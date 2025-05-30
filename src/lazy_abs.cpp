@@ -52,7 +52,8 @@ struct lazy_abs {
         // the data is not contiguous, so we avoid materializing it
         // and rather go through it element by element
         for (R_xlen_t i=0; i<n; i++, ++p_data2) {
-          *p_data2 = ::fabs(ALTREAL_ELT(data1, i)) ;
+          *p_data2 =  REAL(data1)[i];
+          //*p_data2 = ::fabs(ALTREAL_ELT(data1, i)) ;
         }
       }
 
