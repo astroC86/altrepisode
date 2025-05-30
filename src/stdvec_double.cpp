@@ -56,7 +56,7 @@ struct stdvec_double {
 
   // What gets printed when .Internal(inspect()) is used
   static Rboolean Inspect(SEXP x, int pre, int deep, int pvec, void (*inspect_subtree)(SEXP, int, int, int)){
-    Rprintf("std::vector<double> (len=%d, ptr=%p)\n", Length(x), Ptr(x));
+    Rprintf("std::vector<double> (len=%ld, ptr=%p)\n", Length(x), Ptr(x));
     return TRUE;
   }
 
@@ -140,10 +140,16 @@ SEXP doubles() {
   return stdvec_double::Make(v, true);
 }
 
+
+template<class ForwardIt, class Generator>
+void generate(ForwardIt first, ForwardIt last, Generator g){
+    for (; first != last; ++first)
+        *first = g();
+}
 // example C++ function that returns `n` random number between 0 and 1
 std::vector<double> randoms(int n){
   std::vector<double> v(n);
-  std::generate(begin(v), end(v), [] { return (double)std::rand() / RAND_MAX ; } );
+  generate(begin(v), end(v), [] { return (double)std::rand() / RAND_MAX ; } );
   return v;
 }
 
