@@ -2,5 +2,6 @@
 
 export(doubles)
 export(lazy_abs)
+export(doubles_example)
 importFrom(Rcpp,sourceCpp)
 useDynLib(altrepisode, .registration=TRUE)
