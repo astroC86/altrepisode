@@ -222,6 +222,13 @@ std::vector<double> randoms(int n){
   return v;
 }
 
+// -----------------------------------------------------------------------------
+//' A quick example that turns a `std::vector<double>` into an ALTREP and calls sum()
+//'
+//' This will generate 10 random doubles, wrap them in an ALTREP, then call `sum()` on it.
+//'
+//' @return A length-1 numeric (the sum of those 10 randoms).
+//' @export
 // [[Rcpp::export]]
 SEXP doubles_example(){
   Rprintf("[DEBUG] doubles_example() function called\n");
